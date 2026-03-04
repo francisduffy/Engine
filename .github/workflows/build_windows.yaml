@@ -17,31 +17,6 @@ jobs:
           - arch: AMD64
             platform: x64
             boost-lib: 64
-            python-wheel: "cp38"
-            python-version: "3.8"
-          - arch: AMD64
-            platform: x64
-            boost-lib: 64
-            python-wheel: "cp39"
-            python-version: "3.9"
-          - arch: AMD64
-            platform: x64
-            boost-lib: 64
-            python-wheel: "cp310"
-            python-version: "3.10"
-          - arch: AMD64
-            platform: x64
-            boost-lib: 64
-            python-wheel: "cp311"
-            python-version: "3.11"
-          - arch: AMD64
-            platform: x64
-            boost-lib: 64
-            python-wheel: "cp312"
-            python-version: "3.12"
-          - arch: AMD64
-            platform: x64
-            boost-lib: 64
             python-wheel: "cp313"
             python-version: "3.13"
 
@@ -98,6 +73,7 @@ jobs:
         $Url = "https://archives.boost.io/release/1.80.0/binaries/boost_1_80_0-msvc-14.3-${{ matrix.boost-lib }}.exe"
         (New-Object System.Net.WebClient).DownloadFile($Url, "$env:TEMP\boost.exe")
         Start-Process -Wait -FilePath "$env:TEMP\boost.exe" "/SILENT","/SP-","/SUPPRESSMSGBOXES","/DIR=C:\local\boost"
+        Get-ChildItem "C:\local\boost" -Recurse -Include *.lib, *.dll -File | Select-Object -ExpandProperty FullName
         choco install -y ninja
     - name: cmake configure and build
       env:
