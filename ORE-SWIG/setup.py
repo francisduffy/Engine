@@ -132,7 +132,6 @@ class my_build_ext(build_ext):
             except:
                 BOOST_LIB = self.get_var('BOOST_LIB32')
             ORE_DIR = os.path.join('..')
-            ZLIB_DIR = self.get_var('ZLIB_ROOT')
 
             # ADD INCLUDE DIRECTORIES
             self.include_dirs.append(self.validate_path(BOOST_DIR))
@@ -141,7 +140,6 @@ class my_build_ext(build_ext):
             self.include_dirs.append(self.validate_path(os.path.join(ORE_DIR, 'QuantExt')))
             self.include_dirs.append(self.validate_path(os.path.join(ORE_DIR, 'OREData')))
             self.include_dirs.append(self.validate_path(os.path.join(ORE_DIR, 'OREAnalytics')))
-            self.include_dirs.append(self.validate_path(os.path.join(ZLIB_DIR, 'include')))
 
             # ADD LIBRARY DIRECTORIES
 
@@ -151,7 +149,7 @@ class my_build_ext(build_ext):
                 target = "Debug"
 
             self.library_dirs.append(self.validate_path(BOOST_LIB))
-            self.library_dirs.append(self.validate_path(os.path.join(ZLIB_DIR, 'lib')))
+
             ORE_BUILD_DIR = os.path.join(ORE_DIR,"build")
             
             # for internal use

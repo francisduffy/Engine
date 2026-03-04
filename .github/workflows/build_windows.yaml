@@ -108,8 +108,8 @@ jobs:
       run: |
         SET ORE_DIR=%cd%
         SET ORE=%cd%
-        SET ZLIB_ROOT=C:\local\zlib-1.3.2\install
-        SET ZLIB_INCLUDE_DIR=C:\local\zlib-1.3.2\install\include
+        SET ZLIB_ROOT=C:\local\zlib-1.3.2
+        SET ZLIB_INCLUDE_DIR=C:\local\zlib-1.3.2
         SET Eigen3_DIR=C:\local\eigen-3.4.0
         mkdir build
         cd build
@@ -123,7 +123,6 @@ jobs:
         SET BOOST_LIBRARYDIR=C:\local\boost\lib${{ matrix.boost-lib }}-msvc-14.3
         SET BOOST_LIB64=C:\local\boost\lib${{ matrix.boost-lib }}-msvc-14.3
         SET BOOST_LIB32=C:\local\boost\lib${{ matrix.boost-lib }}-msvc-14.3
-        SET ZLIB_ROOT=C:\local\zlib-1.3.2\install
         cd ${{ github.workspace }}\ORE-SWIG
         python setup.py wrap
     - name: Build ORE Wheels
@@ -132,7 +131,6 @@ jobs:
         BOOST: C:\local\boost
         BOOST_LIB64: C:\local\boost\lib${{ matrix.boost-lib }}-msvc-14.3
         BOOST_LIB32: C:\local\boost\lib${{ matrix.boost-lib }}-msvc-14.3
-        ZLIB_ROOT: C:\local\zlib-1.3.2\install
         ORE: ${{ github.workspace }}
         ORE_DIR: ${{ github.workspace }}
         ORE_STATIC_RUNTIME: 1

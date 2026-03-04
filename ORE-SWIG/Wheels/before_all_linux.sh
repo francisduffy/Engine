@@ -59,4 +59,4 @@ pwd
 ls
 cd ORE-SWIG
 python setup.py wrap
-echo "LD_LIBRARY_PATH is: $LD_LIBRARY_PATH"
+
