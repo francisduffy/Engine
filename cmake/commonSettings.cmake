@@ -52,6 +52,7 @@ option(ORE_MULTITHREADING_CPU_AFFINITY "Set cpu affinitity in multithreaded calc
 option(ORE_ENABLE_PARALLEL_UNIT_TEST_RUNNER "Enable the parallel unit test runner" OFF)
 option(ORE_ENABLE_OPENCL "Enable OpenCL" OFF)
 option(ORE_ENABLE_CUDA "Enable CUDA" OFF)
+option(ORE_PREVENT_BOOST_AUTO_LINKING "Prevent Boost auto-linking" ON)
 
 # Implies that we have built QuantLib (our fork thereof) separately and that we are importing it.
 option(ORE_BUILD_QL_SEPARATELY "Enable when building ORE separately." OFF)
@@ -214,8 +215,10 @@ endif()
 
 if(ORE_BOOST_AUTO_LINK_SYSTEM)
     add_compile_definitions(BOOST_AUTO_LINK_SYSTEM)
-else()
-    # Avoid using Boost auto-linking unless it was explicitly asked for.
+endif()
+
+# Avoid using Boost auto-linking unless it was explicitly asked for.
+if(ORE_PREVENT_BOOST_AUTO_LINKING)
     add_compile_definitions(BOOST_ALL_NO_LIB)
 endif()
 
